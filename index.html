@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Siri Academy - Leading Educational Institution for JEE, NEET, CET preparation">
+    <title>Siri Academy | Excellence in Education</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2563eb;
+            --secondary: #1e40af;
+            --text: #1f2937;
+            --light: #f3f4f6;
+            --transition: all 0.3s ease;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: white;
+            padding: 1rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links .active {
+            color: var(--primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+                        url('/api/placeholder/1920/1080') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 1rem;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInDown 1s;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s;
+        }
+
+        /* Sections */
+        section {
+            padding: 5rem 1rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: var(--transition);
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: var(--transition);
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        /* Testimonials */
+        .testimonials {
+            background: var(--light);
+        }
+
+        .testimonial-container {
+            overflow: hidden;
+            position: relative;
+        }
+
+        .testimonial-slide {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .testimonial-slide.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+
+        /* Rankers Grid */
+        .rankers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .ranker-card {
+            text-align: center;
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: var(--transition);
+        }
+
+        .ranker-card:hover {
+            transform: scale(1.05);
+        }
+
+        /* Contact Form */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        input, textarea {
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .btn:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">Siri Academy</div>
+            <div class="nav-links">
+                <a href="#home" class="active">Home</a>
+                <a href="#about">About</a>
+                <a href="#services">Services</a>
+                <a href="#partners">Partners</a>
+                <a href="#chairman">Chairman</a>
+                <a href="#testimonials">Testimonials</a>
+                <a href="#rankers">Rankers</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Welcome to Siri Academy</h1>
+            <p>Empowering minds, shaping futures - Your gateway to academic excellence</p>
+            <a href="#contact" class="btn">Get Started Today</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2>About Us</h2>
+            <p>Siri Academy has been at the forefront of education excellence for over two decades. Our commitment to quality education and personalized learning has helped thousands of students achieve their academic goals.</p>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services">
+        <div class="container">
+            <h2>Our Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>JEE Preparation</h3>
+                    <p>Comprehensive coaching for JEE Main and Advanced</p>
+                </div>
+                <div class="service-card">
+                    <h3>NEET Coaching</h3>
+                    <p>Expert guidance for medical entrance preparations</p>
+                </div>
+                <div class="service-card">
+                    <h3>CET Training</h3>
+                    <p>Specialized coaching for state-level engineering entrance</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partners Section -->
+    <section id="partners">
+        <div class="container">
+            <h2>Our Partners</h2>
+            <div class="partners-grid">
+                <!-- Partner logos will go here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Chairman Section -->
+    <section id="chairman">
+        <div class="container">
+            <h2>About Our Chairman</h2>
+            <div class="chairman-content">
+                <img src="/api/placeholder/400/400" alt="Mr. KS Rao" class="chairman-image">
+                <h3>Mr. KS Rao</h3>
+                <p>With over 30 years of experience in education, Mr. KS Rao has been instrumental in shaping the future of thousands of students.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <h2>What Our Students Say</h2>
+            <div class="testimonial-container">
+                <div class="testimonial-slide active">
+                    <p>"Siri Academy helped me achieve my dream of getting into IIT. The faculty support was exceptional!"</p>
+                    <cite>- Rahul Kumar, IIT Delhi</cite>
+                </div>
+                <!-- More testimonials will be added dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Rankers Section -->
+    <section id="rankers">
+        <div class="container">
+            <h2>Our Previous Rankers</h2>
+            <div class="rankers-grid">
+                <!-- Ranker cards will be added dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <h2>Contact Us</h2>
+            <div class="contact-container">
+                <form class="contact-form">
+                    <input type="text" placeholder="Your Name" required>
+                    <input type="email" placeholder="Your Email" required>
+                    <textarea placeholder="Your Message" rows="5" required></textarea>
+                    <button type="submit" class="btn">Send Message</button>
+                </form>
+                <div class="map">
+                    <img src="/api/placeholder/600/400" alt="Location Map">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Intersection Observer for scroll animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        // Observe all sections
+        document.querySelectorAll('section:not(.hero)').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Navbar scroll handling
+        const navbar = document.querySelector('.navbar');
+        const navLinks = document.querySelectorAll('.nav-links a');
+        const sections = document.querySelectorAll('section');
+
+        window.addEventListener('scroll', () => {
+            // Add shadow to navbar on scroll
+            if (window.scrollY > 50) {
+                navbar.style.boxShadow = '0 2px 4px rgba(0,0,0,0.1)';
+            } else {
+                navbar.style.boxShadow = 'none';
+            }
+
+            // Update active nav link
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (window.scrollY >= sectionTop - 60) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').slice(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Testimonials carousel
+        const testimonials = [
+            {
+                text: "Siri Academy helped me achieve my dream of getting into IIT. The faculty support was exceptional!",
+                author: "Rahul Kumar, IIT Delhi"
+            },
+            {
+                text: "The structured approach to NEET preparation made all the difference in my success.",
+                author: "Priya Sharma, AIIMS"
+            },
+            {
+                text: "Outstanding faculty and excellent study material. Highly recommended!",
+                author: "Amit Patel, NIT Surathkal"
+            }
+        ];
+
+        let currentTestimonial = 0;
+        const testimonialContainer = document.querySelector('.testimonial-container');
+
+        function updateTestimonials() {
+            const testimonial = testimonials[currentTestimonial];
+            testimonialContainer.innerHTML = `
+                <div class="testimonial-slide active">
+                    <p>"${testimonial.text}"</p>
+                    <cite>- ${testimonial.author}</cite>
+                </div>
+            `;
+            currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+        }
+
+        // Change testimonial every 5 seconds
+        setInterval(updateTestimonials, 5000);
+
+        // Initialize rankers
+        const rankers = [
+            { name: "Sneha Reddy", rank: "AIR 45 - JEE Advanced", year: "2023" },
+            { name: "Arjun Kumar", rank: "AIR 156 - NEET", year: "2023" },
+            { name: "Karthik Shah", rank: "State Rank 1 - CET", year: "2023" }
+        ];
+
+        const rankersGrid = document.querySelector('.rankers-grid');
+        rankers.forEach(ranker => {
+            rankersGrid.innerHTML += `
+                <div class="ranker-card">
+                    <img src="/api/placeholder/200/200" alt="${ranker.name}">
+                    <h3>${ranker.name}</h3>
+                    <p>${ranker.rank}</p>
+                    <p>Year: ${ranker.year}</p>
+                </div>
+            `;
+        });
+
+        // Contact form handling
+        const contactForm = document.querySelector('.contact-form');
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            // Here you would typically handle form submission
+            // For demo purposes, we'll just show an alert
+            alert('Thank you for your message! We will get back to you soon.');
+            contactForm.reset();
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Mobile menu toggle (for responsive design)
+        function createMobileMenu() {
+            const navbar = document.querySelector('.navbar');
+            const navLinks = document.querySelector('.nav-links');
+            
+            // Create hamburger menu button
+            const menuButton = document.createElement('button');
+            menuButton.classList.add('mobile-menu-btn');
+            menuButton.innerHTML = '☰';
+            menuButton.style.display = 'none';
+            
+            // Style for mobile menu button
+            menuButton.style.cssText = `
+                background: none;
+                border: none;
+                font-size: 1.5rem;
+                cursor: pointer;
+                padding: 0.5rem;
+                color: var(--primary);
+            `;
+
+            // Insert button before nav-links
+            navbar.querySelector('.nav-container').appendChild(menuButton);
+
+            // Handle mobile menu toggle
+            menuButton.addEventListener('click', () => {
+                navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+            });
+
+            // Media query for mobile view
+            const mediaQuery = window.matchMedia('(max-width: 768px)');
+            
+            function handleMobileView(e) {
+                if (e.matches) {
+                    menuButton.style.display = 'block';
+                    navLinks.style.display = 'none';
+                    // Mobile-specific styles for nav-links
+                    navLinks.style.cssText = `
+                        display: none;
+                        position: absolute;
+                        top: 100%;
+                        left: 0;
+                        right: 0;
+                        background: white;
+                        flex-direction: column;
+                        padding: 1rem;
+                        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+                    `;
+                } else {
+                    menuButton.style.display = 'none';
+                    navLinks.style.display = 'flex';
+                    navLinks.style.cssText = ''; // Reset to default styles
+                }
+            }
+
+            // Initial check and add listener
+            handleMobileView(mediaQuery);
+            mediaQuery.addListener(handleMobileView);
+        }
+
+        // Initialize mobile menu
+        createMobileMenu();
+
+        // Add loading animation for images
+        document.querySelectorAll('img').forEach(img => {
+            img.addEventListener('load', function() {
+                this.style.animation = 'fadeIn 0.5s';
+            });
+        });
+
+    </script>
+</body>
+</html>
